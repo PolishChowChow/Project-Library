@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Gentium+Book+Plus&family=Moon+Dance&display=swap" rel="stylesheet">
+    <link rel="shortcut icon" href="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSuraLLKEykFDvI5Nc3Qo4RiqZqhzHLVU2vKQ&usqp=CAU" type="image/x-icon">
+    <link rel="stylesheet" href="styling.css">
+    <title>Library</title>
+</head>
+<body>
+    <header class="main-header">
+        <h1>My beautiful library</h1>
+    </header>
+    <aside>
+        <section class="inputs">
+            <h3>Add a new book</h3>
+            <input type="text" id="title" placeholder="Title"><br>
+            <input type="text" id="author" placeholder="Author"><br>
+            <input type="number" id="numberOfPages" placeholder="Number of Pages"><br>
+            <select id="isReaded">
+                <option value="readed">readed</option>
+                <option value="not-readed">not readed</option>
+            </select><br>
+            <button class="submit">Add Book</button>
+        </section>
+    </aside>
+    <main>
+        <section id="root">
+        </section>
+    </main>
+    <footer>
+        <p id="copyright"></p>
+    </footer>
+    <script src="index.js"></script>
+</body>
+</html>

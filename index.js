@@ -41,7 +41,7 @@ function createContent(div, author, numberOfPages, status, id){
     content.classList.add("content");
     content.innerHTML = `Author: ${author}<br> Number of Pages: ${numberOfPages}<br>`;
     createRemoveButton(content, id);
-    createStatusButton(content,status);
+    createStatusButton(content,status, id);
     div.appendChild(content);
 }
 function createRemoveButton(parent, id){
@@ -51,8 +51,10 @@ function createRemoveButton(parent, id){
     button.textContent = "remove";
     parent.appendChild(button);
 }
-function createStatusButton(parent, status){
+function createStatusButton(parent, status, id){
     let button = document.createElement("button");
+    button.classList.add("btn-status");
+    button.setAttribute("id","id--"+id);
     if(status=="readed"){
         button.classList.add("readed");
         button.textContent = "readed";
@@ -71,6 +73,31 @@ function generateCopyright(){
 
 generateCopyright();
 const remove = document.querySelectorAll("button.remove");
+const btnUpdate = document.querySelectorAll(".btn-status");
+btnUpdate.forEach(element=>{
+    element.addEventListener("click",function(){
+        myLibrary.forEach(element => {
+            if(element.id == this.id.slice(4)){
+                let index = myLibrary.indexOf(element);
+                if(myLibrary[index].isReaded=="readed"){
+                    myLibrary[index].isReaded = "not-readed";
+                    this.classList.remove("readed");
+                    this.classList.add("not-readed");
+                    this.textContent = "not readed";
+                }
+                else{
+                    myLibrary[index].isReaded = "readed";
+                    this.classList.remove("not-readed");
+                    this.classList.add("readed");
+                    this.textContent = "readed";
+                }
+            }
+        });
+    });
+})
+function updateState(){
+    
+}
 remove.forEach(element =>{
     element.addEventListener("click",function(){
         myLibrary.forEach(element => {

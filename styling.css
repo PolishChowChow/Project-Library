@@ -99,14 +99,15 @@ button:hover{
     background-color: red;
     color: white;
 }
+.btn-status{
+    background-color: white;
+}
 .readed{
     border: 2px solid green;
-    background-color: white;
     color: green;
 }
 .not-readed{
     border: 2px solid var(--pink);
-    background-color: white;
     color: var(--pink);
 }
 .not-readed:hover{

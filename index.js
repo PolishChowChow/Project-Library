@@ -2,7 +2,8 @@ const root = document.querySelector("section#root");
 const book1 = new Book(1,"title","author","192","readed");
 const book2 = new Book(2,"Kamienie na szaniec","Aleksander Kamiński","240","readed");
 const book3 = new Book(3,"Krzyżacy","Hernyk Sienkiewicz","638","not-readed");
-
+const submit = document.querySelector("button.submit");
+submit.addEventListener("click",addBookToLibrary);
 function Book(id, title, author, numberOfPages, isReaded){
     this.id = id;
     this.title = title;
@@ -16,10 +17,29 @@ function Book(id, title, author, numberOfPages, isReaded){
 }
 let myDivs = [];
 let myLibrary = [book1, book2, book3];
+
 function addBookToLibrary(){
-    let id = Math.random()*100000;
-    let book = new Book(id,title,author,numberOfPages,isReaded);
-    myLibrary.push(book);
+    if(!(document.getElementById("title").value=="" || document.getElementById("author").value=="" || document.getElementById("numberOfPages").value=="")){
+        let id = Math.floor(Math.random()*1000);
+        let data = [document.getElementById("title").value,
+        document.getElementById("author").value,
+        document.getElementById("numberOfPages").value,
+        document.getElementById("isReaded").value
+    ];
+        let book = new Book(id,data[0],data[1],data[2],data[3]);
+        myLibrary.push(book);
+        let div = document.createElement("section");
+        div.classList.add("book");
+        div.classList.add("id-"+id);
+        createHeader(div, data[0]);
+        createContent(div, data[1], data[2], data[3], id);
+        root.appendChild(div);
+        updateState();
+    }
+    else{
+        alert("Don't let inputs empty");
+    }
+    
 }
 myLibrary.forEach(element => {
     let div = document.createElement("section");
@@ -72,6 +92,43 @@ function generateCopyright(){
 }
 
 generateCopyright();
+function updateState(){
+    const remove = document.querySelectorAll("button.remove");
+    const btnUpdate = document.querySelectorAll(".btn-status");
+    btnUpdate.forEach(element=>{
+    element.addEventListener("click",function(){
+        myLibrary.forEach(element => {
+            if(element.id == this.id.slice(4)){
+                let index = myLibrary.indexOf(element);
+                if(myLibrary[index].isReaded=="readed"){
+                    myLibrary[index].isReaded = "not-readed";
+                    this.classList.remove("readed");
+                    this.classList.add("not-readed");
+                    this.textContent = "not readed";
+                }
+                else{
+                    myLibrary[index].isReaded = "readed";
+                    this.classList.remove("not-readed");
+                    this.classList.add("readed");
+                    this.textContent = "readed";
+                }
+            }
+        });
+    });
+});
+remove.forEach(element =>{
+    element.addEventListener("click",function(){
+        myLibrary.forEach(element => {
+            if(element.id == this.id){
+                let index = myLibrary.indexOf(element);
+                myLibrary.splice(index,1);
+                let container = document.querySelector("section.id-"+this.id);
+                root.removeChild(container);
+            }
+        });
+    });
+});
+}
 const remove = document.querySelectorAll("button.remove");
 const btnUpdate = document.querySelectorAll(".btn-status");
 btnUpdate.forEach(element=>{
@@ -94,10 +151,8 @@ btnUpdate.forEach(element=>{
             }
         });
     });
-})
-function updateState(){
-    
-}
+});
+
 remove.forEach(element =>{
     element.addEventListener("click",function(){
         myLibrary.forEach(element => {

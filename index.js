@@ -57,7 +57,8 @@ function createHeader(div, title){
     div.appendChild(header);
 }
 function createContent(div, author, numberOfPages, status, id){
-    let content =document.createElement("section");
+    const content =document.createElement("section");
+
     content.classList.add("content");
     content.innerHTML = `Author: ${author}<br> Number of Pages: ${numberOfPages}<br>`;
     createRemoveButton(content, id);

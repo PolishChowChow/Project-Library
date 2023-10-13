@@ -15,23 +15,28 @@
     <header class="main-header">
         <h1>My beautiful library</h1>
     </header>
-    <aside>
-        <section class="inputs">
-            <h3>Add a new book</h3>
-            <input type="text" id="title" placeholder="Title"><br>
-            <input type="text" id="author" placeholder="Author"><br>
-            <input type="number" id="numberOfPages" placeholder="Number of Pages"><br>
-            <select id="isReaded">
-                <option value="readed">readed</option>
-                <option value="not-readed">not readed</option>
-            </select><br>
-            <button class="submit">Add Book</button>
-        </section>
-    </aside>
-    <main>
-        <section id="root">
-        </section>
-    </main>
+    <section id="container">
+        <aside>
+            <section class="inputs">
+                <h3>Add a new book</h3>
+                <input type="text" id="title" placeholder="Title"><br>
+                <span id="titleError"></span>
+                <input type="text" id="author" placeholder="Author"><br>
+                <span id="authorError"></span>
+                <input type="number" id="numberOfPages" placeholder="Number of Pages"><br>
+                <span id="numberError"></span>
+                <select id="isReaded">
+                    <option value="readed">readed</option>
+                    <option value="not-readed">not readed</option>
+                </select><br>
+                <button class="submit">Add Book</button>
+            </section>
+        </aside>
+        <main>
+            <section id="root">
+            </section>
+        </main>
+    </section>
     <footer>
         <p id="copyright"></p>
     </footer>
